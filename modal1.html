@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>VitalCare - Solicitar Cita</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .navbar {
+      background-color: #0d6efd;
+    }
+    .navbar-brand, .nav-link {
+      color: #fff !important;
+    }
+    .btn-custom {
+      background-color: #0d6efd;
+      color: white;
+    }
+    .btn-custom:hover {
+      background-color: #084298;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="#">VitalCare</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="inicio.php">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="usuarios.php">Usuarios</a></li>
+          <li class="nav-item"><a class="nav-link" href="citas.php">Citas</a></li>
+          <li class="nav-item"><a class="nav-link" href="formularios.php">Formularios</a></li>
+          <li class="nav-item"><a class="nav-link" href="modales.php">Modales</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Título -->
+  <div class="container mt-5">
+    <h2 class="fw-bold mb-4">SOLICITAR CITA</h2>
+
+    <!-- Formulario -->
+    <form method="POST" action="guardar_cita.php" id="formCita">
+      <div class="mb-3">
+        <label for="nombrePaciente" class="form-label">Nombre Completo:</label>
+        <input type="text" class="form-control" id="nombrePaciente" name="nombre" required>
+      </div>
+      <div class="mb-3">
+        <label for="emailPaciente" class="form-label">Correo Electrónico:</label>
+        <input type="email" class="form-control" id="emailPaciente" name="email" required>
+      </div>
+      <div class="mb-3">
+        <label for="telefonoPaciente" class="form-label">Teléfono:</label>
+        <input type="tel" class="form-control" id="telefonoPaciente" name="telefono" required>
+      </div>
+      <div class="mb-3">
+        <label for="fechaCita" class="form-label">Fecha Deseada:</label>
+        <input type="date" class="form-control" id="fechaCita" name="fecha" required>
+      </div>
+      <div class="mb-3">
+        <label for="horaCita" class="form-label">Hora Preferida:</label>
+        <input type="time" class="form-control" id="horaCita" name="hora" required>
+      </div>
+      <div class="mb-3">
+        <label for="motivoCita" class="form-label">Motivo de la Cita:</label>
+        <textarea class="form-control" id="motivoCita" name="motivo" rows="3" required></textarea>
+      </div>
+
+      <!-- Botón para abrir el modal -->
+      <button type="button" class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#confirmarCitaModal">
+        Enviar Solicitud
+      </button>
+
+    </form>
+  </div>
+
+  <!-- Modal de Confirmación -->
+  <div class="modal fade" id="confirmarCitaModal" tabindex="-1" aria-labelledby="confirmarCitaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content border-primary">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title fw-bold" id="confirmarCitaModalLabel">Confirmar Solicitud</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          ¿Estás seguro de enviar la solicitud de cita con los datos ingresados?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary" form="formCita">Confirmar Solicitud</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

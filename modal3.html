@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VitalCare - Pacientes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .navbar {
+      background-color: #0d6efd;
+    }
+    .navbar-brand {
+      color: #fff !important;
+    }
+    .card {
+      border: 2px solid #0d6efd;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(13, 110, 253, 0.15);
+      transition: 0.3s;
+      text-align: center;
+    }
+    .card:hover {
+      box-shadow: 0 8px 18px rgba(13, 110, 253, 0.25);
+    }
+    .card-img-top {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #0d6efd;
+      margin-top: 20px;
+    }
+    .card-title {
+      margin-top: 15px;
+      color: #0d6efd;
+      font-weight: bold;
+    }
+    .card-text {
+      text-align: center;
+      margin: 5px 0;
+    }
+    .btn-custom {
+      background-color: #0d6efd;
+      color: white;
+      border-radius: 50px;
+    }
+    .btn-custom:hover {
+      background-color: #084298;
+    }
+
+    /* Nuevas modificaciones */
+    .modal-header {
+      background-color: #0d6efd; /* Fondo azul */
+      color: white;
+    }
+
+    .modal-title {
+      color: black; /* Título negro */
+      font-weight: bold; /* Título en negrita */
+    }
+
+    .form-label {
+      color: #0d6efd; /* Campos en azul */
+    }
+
+    .modal-content {
+      border: 3px solid #0d6efd; /* Borde azul alrededor del modal */
+      border-radius: 15px; /* Bordes redondeados */
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="#">VitalCare</a>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="fw-bold">Pacientes Registrados</h2>
+      <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#nuevoPacienteModal">+ Nuevo Paciente</button>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+      <!-- Tarjeta Paciente -->
+      <div class="col">
+        <div class="card p-3">
+          <img src="iMAGE.jpg" class="card-img-top mx-auto" alt="Foto paciente">
+          <div class="card-body">
+            <h5 class="card-title">María Jannet Rojas García</h5>
+            <p class="card-text"><strong>Correo:</strong> maria.R@gmail.com</p>
+            <p class="card-text"><strong>Dirección:</strong> Bellavista</p>
+            <p class="card-text"><strong>Sexo:</strong> Femenino</p>
+            <p class="card-text"><strong>Motivo:</strong> Fiebre</p>
+            <p class="card-text"><strong>Hora:</strong> 10:30 AM</p>
+            <p class="card-text"><strong>Día:</strong> 2025-05-05</p>
+            <div class="d-flex justify-content-center gap-2 mt-3">
+              <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editarPacienteModal">Editar</button>
+              <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarPacienteModal">Eliminar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Otra tarjeta -->
+      <div class="col">
+        <div class="card p-3">
+          <img src="image.jpg" class="card-img-top mx-auto" alt="Foto paciente">
+          <div class="card-body">
+            <h5 class="card-title">Wilver Alexis Verduzco Lopez</h5>
+            <p class="card-text"><strong>Correo:</strong> Wil.V@hotmail.com</p>
+            <p class="card-text"><strong>Dirección:</strong> Barrio 123</p>
+            <p class="card-text"><strong>Sexo:</strong> Masculino</p>
+            <p class="card-text"><strong>Motivo:</strong> Dolor abdominal</p>
+            <p class="card-text"><strong>Hora:</strong> 02:00 PM</p>
+            <p class="card-text"><strong>Día:</strong> 2025-05-06</p>
+            <div class="d-flex justify-content-center gap-2 mt-3">
+              <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editarPacienteModal">Editar</button>
+              <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarPacienteModal">Eliminar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal: Agregar nuevo paciente -->
+  <div class="modal fade" id="nuevoPacienteModal" tabindex="-1" aria-labelledby="nuevoPacienteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="nuevoPacienteModalLabel">Agregar Nuevo Paciente</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulario de nuevo paciente -->
+          <form>
+            <div class="mb-3">
+              <label for="nombrePaciente" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombrePaciente" required>
+            </div>
+            <div class="mb-3">
+              <label for="correoPaciente" class="form-label">Correo</label>
+              <input type="email" class="form-control" id="correoPaciente" required>
+            </div>
+            <div class="mb-3">
+              <label for="direccionPaciente" class="form-label">Dirección</label>
+              <input type="text" class="form-control" id="direccionPaciente" required>
+            </div>
+            <div class="mb-3">
+              <label for="sexoPaciente" class="form-label">Sexo</label>
+              <select class="form-select" id="sexoPaciente" required>
+                <option value="femenino">Femenino</option>
+                <option value="masculino">Masculino</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="motivoPaciente" class="form-label">Motivo de Consulta</label>
+              <input type="text" class="form-control" id="motivoPaciente" required>
+            </div>
+            <div class="mb-3">
+              <label for="horaPaciente" class="form-label">Hora</label>
+              <input type="time" class="form-control" id="horaPaciente" required>
+            </div>
+            <div class="mb-3">
+              <label for="fechaPaciente" class="form-label">Fecha</label>
+              <input type="date" class="form-control" id="fechaPaciente" required>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" style="background-color: #0d6efd; border-color: #0d6efd;">Guardar Paciente</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Editar Paciente -->
+  <div class="modal fade" id="editarPacienteModal" tabindex="-1" aria-labelledby="editarPacienteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #0d6efd; color: white;">
+          <h5 class="modal-title" id="editarPacienteModalLabel">Editar Paciente</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulario para editar paciente -->
+          <form>
+            <div class="mb-3">
+              <label for="editarNombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="editarNombre" value="María Jannet Rojas García">
+            </div>
+            <div class="mb-3">
+              <label for="editarCorreo" class="form-label">Correo</label>
+              <input type="email" class="form-control" id="editarCorreo" value="maria.R@gmail.com">
+            </div>
+            <div class="mb-3">
+              <label for="editarDireccion" class="form-label">Dirección</label>
+              <input type="text" class="form-control" id="editarDireccion" value="Bellavista">
+            </div>
+            <div class="mb-3">
+              <label for="editarSexo" class="form-label">Sexo</label>
+              <select class="form-select" id="editarSexo">
+                <option value="femenino">Femenino</option>
+                <option value="masculino">Masculino</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="editarMotivo" class="form-label">Motivo</label>
+              <input type="text" class="form-control" id="editarMotivo" value="Fiebre">
+            </div>
+            <div class="mb-3">
+              <label for="editarHora" class="form-label">Hora</label>
+              <input type="time" class="form-control" id="editarHora" value="10:30">
+            </div>
+            <div class="mb-3">
+              <label for="editarFecha" class="form-label">Fecha</label>
+              <input type="date" class="form-control" id="editarFecha" value="2025-05-05">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" style="background-color: #0d6efd; border-color: #0d6efd;">Guardar Cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Eliminar Paciente -->
+  <div class="modal fade" id="eliminarPacienteModal" tabindex="-1" aria-labelledby="eliminarPacienteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #dc3545; color: white;">
+          <h5 class="modal-title" id="eliminarPacienteModalLabel">Eliminar Paciente</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          ¿Estás seguro de que deseas eliminar a este paciente?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-danger">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
